@@ -1,8 +1,11 @@
 import React, { useState } from "react";
 import { FiMail, FiLock, FiUser, FiEye, FiEyeOff } from "react-icons/fi";
 import authBg from "../../assets/authBg.jpg";
+import { useNavigate } from "react-router";
+import Icons from "../../utils/images";
 
 const Signup = () => {
+  const navigate = useNavigate();
   const [showPass, setShowPass] = useState(false);
   const [showConfirmPass, setShowConfirmPass] = useState(false);
 
@@ -23,59 +26,60 @@ const Signup = () => {
     console.log("Email:", email);
     console.log("Password:", password);
 
-    // API or Firebase er sathe connect korte parba ekhane
+    // API or Firebase 
+    navigate('/otp')
   };
 
   return (
     <div
-      className="h-screen w-full bg-cover bg-center flex items-center justify-center"
+      className="h-screen w-full bg-cover bg-center flex items-center justify-center px-4"
        style={{ backgroundImage: `url(${authBg})` }}
     >
-      <div className="bg-white/10 backdrop-blur-md rounded-xl shadow-lg p-8 w-[400px] border border-white/20 text-white">
+      <div className="authContainer">
 
-        <h2 className="text-3xl font-semibold text-center">Create Account</h2>
-        <p className="text-center text-sm mt-1 mb-6">Sign up to get started</p>
+        <h2 className="text-3xl md:text-[2.5rem]  font-medium text-center">Create Account</h2>
+        <p className="text-center md:text-lg mt-1 mb-6">Sign up to get started</p>
 
         <form onSubmit={handleSignup}>
           
           {/* Full Name */}
           <label className="text-sm">Full Name</label>
-          <div className="flex items-center gap-2 bg-white/20 p-3 rounded-md mt-1">
+          <div className="form-div">
             <FiUser />
             <input
               type="text"
               value={fullName}
               onChange={(e) => setFullName(e.target.value)}
               placeholder="Enter your full name"
-              className="bg-transparent w-full outline-none placeholder-white/70 text-sm"
+              className="form-control"
               required
             />
           </div>
 
           {/* Email */}
           <label className="text-sm mt-4 block">Email</label>
-          <div className="flex items-center gap-2 bg-white/20 p-3 rounded-md mt-1">
+          <div className="form-div">
             <FiMail />
             <input
               type="email"
               value={email}
               onChange={(e) => setEmail(e.target.value)}
               placeholder="email@example.com"
-              className="bg-transparent w-full outline-none placeholder-white/70 text-sm"
+              className="form-control"
               required
             />
           </div>
 
           {/* Password */}
           <label className="text-sm mt-4 block">Password</label>
-          <div className="flex items-center gap-2 bg-white/20 p-3 rounded-md mt-1">
+          <div className="form-div">
             <FiLock />
             <input
               type={showPass ? "text" : "password"}
               value={password}
               onChange={(e) => setPassword(e.target.value)}
               placeholder="********"
-              className="bg-transparent w-full outline-none placeholder-white/70 text-sm"
+              className="form-control"
               required
             />
             {showPass ? (
@@ -87,14 +91,14 @@ const Signup = () => {
 
           {/* Confirm Password */}
           <label className="text-sm mt-4 block">Confirm Password</label>
-          <div className="flex items-center gap-2 bg-white/20 p-3 rounded-md mt-1">
+          <div className="form-div">
             <FiLock />
             <input
               type={showConfirmPass ? "text" : "password"}
               value={confirmPassword}
               onChange={(e) => setConfirmPassword(e.target.value)}
               placeholder="********"
-              className="bg-transparent w-full outline-none placeholder-white/70 text-sm"
+              className="form-control"
               required
             />
             {showConfirmPass ? (
@@ -106,7 +110,7 @@ const Signup = () => {
 
           <button
             type="submit"
-            className="w-full mt-6 bg-red-500 py-2 rounded-md font-medium hover:bg-red-600 transition"
+            className="authButton mt-6"
           >
             Sign Up
           </button>
@@ -119,10 +123,10 @@ const Signup = () => {
           <div className="flex-1 h-px bg-white/30"></div>
         </div>
 
+        {/* Social */}
         <div className="flex justify-center gap-6">
-          <button className="bg-white/20 hover:bg-white/30 p-2 rounded-full">🌐</button>
-          <button className="bg-white/20 hover:bg-white/30 p-2 rounded-full">🟢</button>
-          <button className="bg-white/20 hover:bg-white/30 p-2 rounded-full">🍎</button>
+          <button className="bg-white h-10 w-10 flexCenter p-2 rounded-full"> <img src={Icons.google} alt="google icon" /> </button>
+          <button className="bg-white h-10 w-10 flexCenter p-2 rounded-full"> <img src={Icons.apple} alt="apple icon" /> </button>
         </div>
 
       </div>

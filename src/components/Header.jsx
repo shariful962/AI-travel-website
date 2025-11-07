@@ -1,7 +1,9 @@
-import React from "react";
+import React, { use } from "react";
 import Icons from "../utils/images";
+import { useNavigate } from "react-router";
 
 const Header = () => {
+  const navigate = useNavigate();
   return (
    <div className="containerBox">
      <header className="w-full top-0 z-50 bg-black/40 backdrop-blur-md border-b border-white/10">
@@ -24,7 +26,7 @@ const Header = () => {
 
         {/* Buttons */}
         <div className="flex items-center gap-3">
-          <button className="px-4 py-1.5 border border-white rounded-full hover:bg-white hover:text-black transition">
+          <button onClick={()=>navigate('/signin')} className="px-4 py-1.5 border border-white rounded-full hover:bg-white hover:text-black transition">
             Login
           </button>
           <button className="px-4 py-1.5 bg-red-500 rounded-full hover:bg-red-600 transition">

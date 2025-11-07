@@ -1,8 +1,10 @@
 import React, { useState } from "react";
 import { FiArrowLeft, FiLock, FiEye, FiEyeOff } from "react-icons/fi";
 import authBg from "../../assets/authBg.jpg";
+import { useNavigate } from "react-router";
 
 const ResetPassword = () => {
+  const navigate = useNavigate();
   const [showPass, setShowPass] = useState(false);
   const [showConfirmPass, setShowConfirmPass] = useState(false);
   const [password, setPassword] = useState("");
@@ -17,38 +19,41 @@ const ResetPassword = () => {
     }
 
     console.log("New Password:", password);
-    // ekhane password reset API / Firebase updatePassword add korba
+    //  password reset API / Firebase updatePassword add
+    navigate('/signin')
   };
 
   return (
     <div
-      className="h-screen w-full bg-cover bg-center flex items-center justify-center"
+      className="h-screen w-full bg-cover bg-center flex items-center justify-center px-4"
       style={{ backgroundImage: `url(${authBg})` }}
     >
-      <div className="bg-white/10 backdrop-blur-md rounded-xl shadow-lg p-8 w-[400px] border border-white/20 text-white">
+      <div className="authContainer">
 
         {/* Back + Title */}
-        <div className="flex items-center gap-3 mb-4">
-          <button  className="hover:text-gray-200">
-            <FiArrowLeft size={22} />
-          </button>
-          <h2 className="text-2xl font-semibold">Reset Password</h2>
+        <div className="flex justify-center">
+          <div className="flex gap-3">
+            <button onClick={() => navigate('/otp')} className="text-white cursor-pointer">
+              <FiArrowLeft size={22} />
+            </button>
+            <h2 className="text-[28px] md:text-[2rem]  font-medium md:text-center">Reset Password</h2>
+          </div>
         </div>
 
-        <p className="text-sm text-white/80 mb-6 leading-5">
-          Enter your new password below to reset<br />your account password.
+        <p className="text-center md:text-lg mt-1 mb-6">
+          Enter your new password below to reset your account password.
         </p>
 
         <form onSubmit={handleReset}>
 
           {/* New Password */}
           <label className="text-sm">New Password</label>
-          <div className="flex items-center gap-2 bg-white/20 p-3 rounded-md mt-1">
+          <div className="form-div">
             <FiLock />
             <input
               type={showPass ? "text" : "password"}
               placeholder="********"
-              className="bg-transparent w-full outline-none placeholder-white/70 text-sm"
+              className="form-control"
               value={password}
               onChange={(e) => setPassword(e.target.value)}
               required
@@ -62,12 +67,12 @@ const ResetPassword = () => {
 
           {/* Confirm Password */}
           <label className="text-sm mt-4 block">Confirm Password</label>
-          <div className="flex items-center gap-2 bg-white/20 p-3 rounded-md mt-1">
+          <div className="form-div">
             <FiLock />
             <input
               type={showConfirmPass ? "text" : "password"}
               placeholder="********"
-              className="bg-transparent w-full outline-none placeholder-white/70 text-sm"
+              className="form-control"
               value={confirmPassword}
               onChange={(e) => setConfirmPassword(e.target.value)}
               required
@@ -81,7 +86,7 @@ const ResetPassword = () => {
 
           <button
             type="submit"
-            className="w-full mt-6 bg-red-500 py-2 rounded-md font-medium hover:bg-red-600 transition"
+            className="authButton mt-6"
           >
             Reset Password
           </button>

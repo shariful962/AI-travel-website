@@ -3,6 +3,7 @@ import Icons from "../utils/images";
 
 const AiAssistant = () => {
     return (
+        <div className="bg-[#181818]">
         <div className="containerBox">
             <section className="py-20 bg-[#181818]">
                 <div className="max-w-6xl mx-auto flex flex-col md:flex-row items-center gap-10 px-6">
@@ -21,6 +22,7 @@ const AiAssistant = () => {
                     </div>
                 </div>
             </section>
+        </div>
         </div>
     );
 };
