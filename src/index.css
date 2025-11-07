@@ -7,4 +7,8 @@
 
 }
 
+.containerBox {
+  @apply max-w-[1536px] mx-auto;
+}
+
 /* https://chatgpt.com/c/690a5236-cfa4-8321-ba25-fc1ba9ca327f  */
